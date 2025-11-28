@@ -28,3 +28,41 @@ body{
   .animate-fadeIn {
     animation: fadeIn 0.5s ease-out forwards;
 }
+
+/* Hero video responsive fixes */
+@media (max-width: 768px) {
+  #home {
+    position: relative;
+    overflow: visible;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  #home video {
+    object-fit: contain;
+    object-position: center center;
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  #home .max-w-7xl {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  /* Ensure overlay doesn't cover content on mobile */
+  #home .absolute.inset-0.bg-black {
+    display: none;
+  }
+}

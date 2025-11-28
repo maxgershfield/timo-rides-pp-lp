@@ -1,40 +1,90 @@
 ---
-import { Image } from 'astro:assets';
-import HeroMain from '../../assets/images/Hero.webp';
 import Link from '../atoms/Link.astro';
 import { ArrowRight } from '@lucide/astro';
 
-const driverWhatsAppLink = "https://wa.me/27726948528?text=Hello,%20I%20want%20to%20become%20a%20Timo%20driver";
-const ridesWhatsAppLink = "https://wa.me/27726948528?text=Hello,%20I%20want%20to%20book%20a%20ride";
+const pathPulseLink = "https://play.google.com/store/apps/details?id=com.nxved.pulsescout.nativeapp&referrer=utm_source%3Dreferral%26utm_content%3D072";
+const signupWhatsAppLink = "https://wa.me/27726948528?text=SIGNUP";
 ---
-<section id="home" class="max-w-7xl mx-auto overflow-hidden h-screen w-full px-4">
-
-  
-
-    <Image 
-      src={HeroMain}
-      
-      alt="Hero image"
-      class="absolute w-full h-screen object-cover object-center top-0 left-0"
-      loading="eager"
-    />
+<section id="home" class="relative w-full overflow-hidden min-h-screen">
 
 
-    <div class="flex flex-col justify-center items-start animate-fadeIn relative h-full space-y-8">
-      <div class="space-y-2 max-w-2xl">
-        <h1 class="uppercase text-5xl md:text-6xl font-bold flex flex-col ">
-          <span class="text-accent">Premium Rides</span>
-          <span class="text-white">Across South Africa</span>
-        </h1>
-        <p class="text-xl text-white font-medium ">
-          Ride in style with top-tier vehicles and trusted drivers. Pre-book your journey today.
-        </p>
+    <!-- Gradient overlay for text readability - hidden on mobile, shown on desktop -->
+    <div class="hidden md:block absolute inset-0 w-full h-full bg-black/50 z-10" style="min-height: 100vh;"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-20 w-full pl-2 pr-4">
+      <!-- Mobile layout: text above, video in middle, CTAs below -->
+      <div class="flex flex-col md:hidden animate-fadeIn relative py-8">
+        <!-- Text above video on mobile -->
+        <div class="text-center space-y-4 mb-6 z-30 relative">
+          <h1 class="uppercase text-4xl font-bold flex flex-col space-y-2">
+            <span class="text-accent drop-shadow-2xl">Timo Rides x Path Pulse</span>
+            <span class="text-white drop-shadow-2xl">Leaderboard Challenge</span>
+          </h1>
+          <p class="text-lg text-white font-semibold drop-shadow-lg">
+            December 5–20, 2024
+          </p>
+        </div>
+
+        <!-- Video on mobile - inline, not absolute -->
+        <div class="relative z-10 my-4 w-full">
+          <video 
+            autoplay
+            loop
+            muted
+            playsinline
+            class="w-full h-auto md:hidden"
+            style="object-fit: contain;"
+          >
+            <source src="/TimoPathPulseHero.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <!-- CTAs below video on mobile -->
+        <div class="flex flex-col gap-4 mt-6 z-30 relative">
+          <Link href={pathPulseLink} label='Download PathPulse' classes='flex justify-center items-center gap-3 bg-primary px-6 py-4 font-bold text-bg rounded-full text-lg hover:bg-accent hover:text-primary transition duration-300 group shadow-xl border-2 border-primary'>
+            <ArrowRight size={18} class="text-white group-hover:text-primary transition duration-300" slot={"icon"}/>
+          </Link>
+          <Link href={signupWhatsAppLink} label='Text SIGNUP' classes='flex justify-center items-center border-2 border-accent px-6 py-4 font-bold text-bg rounded-full hover:bg-accent/20 transition duration-300 text-lg shadow-xl backdrop-blur-sm bg-white/10'/>         
+          <p class="text-sm text-white/80 drop-shadow-lg mt-2 px-4 text-center">
+            Text SIGNUP to receive signup instructions via WhatsApp
+          </p>
+        </div>
       </div>
-      <div class="flex max-sm:flex-col justify-center items-center gap-4 max-sm:w-full">
-         <Link href={ridesWhatsAppLink} label='Book a Ride' classes='flex justify-center items-center gap-3 bg-primary px-5 py-3 font-bold text-bg rounded-full text-lg hover:bg-accent hover:text-primary transition duration-300 group max-sm:w-full border-2 border-primary'>
-          <ArrowRight size={16} class="text-white group-hover:text-primary transition duration-300" slot={"icon"}/>
-        </Link>
-        <Link href={driverWhatsAppLink} label='Become a Driver' classes='flex justify-center items-center border-2 border-accent px-5 py-3 font-bold text-bg rounded-full hover:bg-black/20 transition duration-300 text-lg max-sm:w-full'/>         
+
+      <!-- Desktop layout: centered overlay (unchanged) -->
+      <div class="hidden md:flex flex-col justify-center items-center animate-fadeIn relative min-h-screen z-20">
+        <!-- Desktop video background -->
+        <video 
+          autoplay
+          loop
+          muted
+          playsinline
+          class="absolute inset-0 w-full h-full object-cover"
+          style="object-position: center center; z-index: -1;"
+        >
+          <source src="/TimoPathPulseHero.mp4" type="video/mp4" />
+        </video>
+        <!-- Desktop overlay -->
+        <div class="absolute inset-0 w-full h-full bg-black/50 z-0"></div>
+        <div class="text-center space-y-4">
+          <h1 class="uppercase text-5xl md:text-6xl lg:text-7xl font-bold flex flex-col space-y-2">
+            <span class="text-accent drop-shadow-2xl">Timo Rides x Path Pulse</span>
+            <span class="text-white drop-shadow-2xl">Leaderboard Challenge</span>
+          </h1>
+          <p class="text-xl md:text-2xl text-white font-semibold drop-shadow-lg mt-4">
+            December 5–20, 2024
+          </p>
+        </div>
+
+        <div class="flex gap-4 mt-8">
+          <Link href={pathPulseLink} label='Download PathPulse' classes='flex justify-center items-center gap-3 bg-primary px-6 py-4 font-bold text-bg rounded-full text-lg hover:bg-accent hover:text-primary transition duration-300 group shadow-xl border-2 border-primary'>
+            <ArrowRight size={18} class="text-white group-hover:text-primary transition duration-300" slot={"icon"}/>
+          </Link>
+          <Link href={signupWhatsAppLink} label='Text SIGNUP' classes='flex justify-center items-center border-2 border-accent px-6 py-4 font-bold text-bg rounded-full hover:bg-accent/20 transition duration-300 text-lg shadow-xl backdrop-blur-sm bg-white/10'/>         
+        </div>
+        <p class="text-sm md:text-base text-white/80 drop-shadow-lg mt-4 px-4 text-center max-w-2xl">
+          Text SIGNUP to receive signup instructions via WhatsApp
+        </p>
       </div>
     </div>
 
